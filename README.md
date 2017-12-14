@@ -88,8 +88,9 @@ SQL> exec DBMS_SYNC_ADMIN.CREATE_SYNC(owner  ,sync_name ,sql_cmd ,data_link ,obj
 - SCHEDULE - Scheduler Parameters 
 - REFRESH_METHOD - Refresh Method. can be: F- Fast refresh , C - Complete refresh , TC - Complete with Drop Object if Exist.
 ```
-SQL> exec sync_admin.DBMS_SYNC_ADMIN.CREATE_SYNC('SYS','ALERT_LOG','select ORIGINATING_TIMESTAMP,MESSAGE_TEXT from sys.v_alert_log where MESSAGE_TEXT like ''%ORA-%''','ES_DATA_LINK','alert_{DDMM}',null,'C');
+SQL> exec sync_admin.DBMS_SYNC_ADMIN.CREATE_SYNC('SYS','ALERT_LOG','select ORIGINATING_TIMESTAMP,MESSAGE_TEXT from sys.v_alert_log','ES_DATA_LINK','alert_log',null,'C');
 ```
+[Full Example](https://github.com/mamrami/Sync-Admin-For-Oracle/wiki/Sync-Oracle-Alert-Log-To-Elasticsearch)
 
 # Create Inbound Synchronization
 
