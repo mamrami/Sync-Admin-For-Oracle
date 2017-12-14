@@ -7,13 +7,13 @@ Sync Admin allows you to sync data from an Oracle database with Outbound Rest su
 This is usefull for sync data with Elasticsearch / Solar / Kafka and more. use External Indexes and Text Services. 
 
 version 0.1 support, by Technology:
-ElasticSearch:
- - Index Mapping
- - Dynamin Index Name
- - Complete refresh
- - Schedule sync 
- - User/Password
 
+ElasticSearch:
+ - Sync Data fro Query to Index
+ - Dynamic Index Name
+ - Refresh Method: Complete
+ - Schedule sync 
+ - Index Mapping
  
 # Installation
 1. Download the Util packages
@@ -65,10 +65,9 @@ SQL> select * from providers;
 
         ID NAME
 ---------- --------------------------------------------------
-         1 Solar 1.0
-         2 Elastic 1.4
-         3 Elastic 5.0
-         4 Cassandra
+         1 Elastic 1.4
+         2 Elastic 5.0
+         3 Solar
          4 Gremlin Server
 ```
 3. Example:
@@ -84,12 +83,13 @@ SQL> exec DBMS_SYNC_ADMIN.CREATE_SYNC(owner  ,sync_name ,sql_cmd ,data_link ,obj
 - SYNC_NAME - sync unique name
 - SQL_CMD - SQL Select Command 
 - DATA_LINK -Data link Name
-- OBJECT_NAME - Target Name of the Provider. es: Index_name
+- OBJECT_NAME - Target Name of the Terget Provider Object.
+                You can use Oracle Date Variables for dynamic name in "{DDMM}": example: app_log_{DDMM}
 - SCHEDULE - Scheduler Parameters 
 - REFRESH_METHOD - Refresh Method. can be: F- Fast refresh , C - Complete refresh , TC - Complete with Drop Object if Exist.
-
-SQL> exec sync_admin.DBMS_SYNC_ADMIN.CREATE_SYNC('SYS','ALERT_LOG','select ORIGINATING_TIMESTAMP,MESSAGE_TEXT from sys.v_alert_log where MESSAGE_TEXT like '%ORA-%'','1','alert_{DDMM}',null,'C');
-
+```
+SQL> exec sync_admin.DBMS_SYNC_ADMIN.CREATE_SYNC('SYS','ALERT_LOG','select ORIGINATING_TIMESTAMP,MESSAGE_TEXT from sys.v_alert_log where MESSAGE_TEXT like ''%ORA-%''','ES_DATA_LINK','alert_{DDMM}',null,'C');
+```
 
 # Create Inbound Synchronization
 
