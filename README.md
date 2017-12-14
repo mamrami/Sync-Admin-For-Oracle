@@ -9,11 +9,12 @@ This is usefull for sync data with Elasticsearch / Solar / Kafka and more. use E
 version 0.1 support, by Technology:
 
 ElasticSearch:
- - Sync Data fro Query to Index
+ - Sync Data Query to Index
  - Dynamic Index Name
  - Refresh Method: Complete
  - Schedule sync 
- - Index Mapping
+ - Dynamic Index Mapping 
+ - Custom Index Settings
  
 # Installation
 1. Download the Util packages
