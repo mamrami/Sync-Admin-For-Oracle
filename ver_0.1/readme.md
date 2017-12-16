@@ -1,5 +1,5 @@
-# This Version is: 0.1 
-Support Versions:
+# Version 0.1 
+Installation Requirements
 - Oracle 12.X
 
 Data Sync to: 
